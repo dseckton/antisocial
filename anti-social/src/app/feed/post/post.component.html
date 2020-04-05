@@ -1,0 +1,22 @@
+<div class="row p-3 bg-light rounded-lg shadow mb-3">
+    <div class="col-sm-3">
+      <a>
+        <div class="h5 text-center">{{post.author.name}}</div>
+        <img class="w-100" src="{{post.author.picUrl}}" alt="">
+        <div class="d-flex justify-content-between mt-3" *ngIf="post.author.name == currentUser">
+          <button type="button" class="btn btn-danger" (click)="onDelete(post.time)">Delete Post</button>
+          <button *ngIf="editMode == false" type="button" class="btn btn-secondary" (click)="onEdit(post.time)">Edit Post</button>
+          <button *ngIf="editMode == true" type="button" class="btn btn-success" (click)="onSave(post.time, post.author.name, post.author.picUrl)">Save Post</button>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-9">
+      <div class="bg-white p-3 rounded-lg mb-3">
+        <div *ngIf="editMode == false">{{post.content}}</div>
+        <textarea #updateText *ngIf="editMode == true" rows="10" style="width: 100%" class="bg-white p-3 rounded-lg update">{{post.content}}</textarea>
+      </div>
+      <!-- Comments:
+      <anti-comment *ngFor="let comment of comments"></anti-comment>
+      <anti-add-comment></anti-add-comment> -->
+    </div>
+  </div>
